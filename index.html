@@ -20,39 +20,46 @@
     </style>
   </head>
   <body>
-    <h1>PICK MY BRAIN</h1>
+    <h1>Smoosh</h1>
     <input id="text-input" />
     <div id="text-wrapper"></div>
     <!-- script -->
     <script>
       const textWrapper = document.getElementById("text-wrapper");
       const textInput = document.getElementById("text-input");
-     // const words ="a place,a platter,between,b place,c place".split(",");
-const words = [
-  "red apple",
-  "green banana",
-  "rotten fish",
-  "homeless cat",
-  "ex boyfriend fried",
-  "how old is simon baker"
-] ;
+      // const words ="a place,a platter,between,b place,c place".split(",");
+      const words = [
+        "red apple",
+        "green banana",
+        "rotten fish",
+        "homeless cat",
+        "ex boyfriend fried",
+        "how old is simon baker,",
+        "red spagetti",
+        "eminems hair colour",
+        "orange peels",
+        "potato good 4 u?"
+      ];
       function changeText(e) {
+        const searchWord = e.target.value.toLowerCase().trim();
         const resultWords = words.filter(word =>
-          word.startsWith(e.target.value)
+          word.toLowerCase().startsWith(searchWord)
         );
         // clear exist words
         while (textWrapper.firstChild) {
           textWrapper.removeChild(textWrapper.firstChild);
         }
-        for (var i = 0; i < resultWords.length; i++) {
-          const line = document.createElement("div");
-          line.innerHTML = resultWords[i];
-          textWrapper.appendChild(line);
-        }
-        if (resultWords.length=== 0){
-          const line = document.createElement("div");
-          line.innerHTML = "No Results";
-          textWrapper.appendChild(line);
+        if (searchWord != "") {
+          for (var i = 0; i < resultWords.length; i++) {
+            const line = document.createElement("div");
+            line.innerHTML = resultWords[i];
+            textWrapper.appendChild(line);
+          }
+          if (resultWords.length === 0) {
+            const line = document.createElement("div");
+            line.innerHTML = "No Results";
+            textWrapper.appendChild(line);
+          }
         }
       }
 
@@ -64,3 +71,15 @@ const words = [
     <script src="https://button.glitch.me/button.js" defer></script>
   </body>
 </html>
+<style>
+  body {
+    font-family: "Fira Code", serif;
+    margin: 2em;
+    background-color: #FFEFFF;
+    color: pink;
+    font-size: 1.2em;
+  }
+  h1 {
+    color: pink;
+  }
+</style>
